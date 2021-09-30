@@ -1,14 +1,26 @@
 public class Room {
-    private String north;
-    private String south;
-    private String east;
-    private String west;
+    private Room north;
+    private Room south;
+    private Room east;
+    private Room west;
 
-    Room(String nh, String sh, String et, String wt) {
-        this.north = nh;
-        this.south = sh;
-        this.east = et;
-        this.west = wt;
+
+    Room(){
+
+    }
+
+
+    public void setFieldNorth(Room rnN) {
+        this.north
+
+    }public void setFieldSouth(Room rnS) {
+        this.south
+
+    }public void setFieldEast(Room rnE) {
+        this.east
+
+    }public void setFieldWestRoom(Room rnW) {
+        this.west
 
     }
 }
