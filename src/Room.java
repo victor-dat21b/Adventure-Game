@@ -10,9 +10,5 @@ public class Room {
         this.east = et;
         this.west = wt;
 
-
-
-
-
     }
 }
