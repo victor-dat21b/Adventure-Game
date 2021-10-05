@@ -17,15 +17,28 @@ public class Room {
 
     public void setFieldNorth(Room rnN) {
         this.north = rnN;
+        if (rnN.getFieldSouth() == null){
+            rnN.setFieldSouth(this);
+        }
+
 
     }public void setFieldSouth(Room rnS) {
         this.south = rnS;
+        if (rnS.getFieldNorth() == null){
+            rnS.setFieldNorth(this);
+        }
 
     }public void setFieldEast(Room rnE) {
         this.east = rnE;
+        if (rnE.getFieldWest() == null){
+            rnE.setFieldWest(this);
+        }
 
-    }public void setFieldWestRoom(Room rnW) {
+    }public void setFieldWest(Room rnW) {
         this.west = rnW;
+        if (rnW.getFieldWest() == null){
+            rnW.setFieldWest(this);
+        }
     }
 
 
@@ -50,5 +63,6 @@ public class Room {
     public String getRoom(){
         return this.name;
         }
+
 
     }
