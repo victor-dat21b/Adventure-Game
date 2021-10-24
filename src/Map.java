@@ -1,6 +1,10 @@
 public class Map {
 
-    public static Room[] mapCreationArray() {
+
+
+    //Game opretter et map der laver alle rooms. Game fortæller hvilket rum player skal befinde sig i.
+    public Room[] mapCreationArray() {
+        //Pass arraylist of items to room
         Room room1 = new Room("Room 1", "In the ceiling above " +
                 "you see the hole in which " +
                 "you fell down. Nothing else is in the cave");
@@ -27,12 +31,23 @@ public class Map {
         room7.setFieldEast(room8);
         room8.setFieldEast(room9);
 
+        room2.setItemsListRoom(new Lamp());
+        room2.setItemsListRoom(new Statue());
+        room2.setItemsListRoom(new Sword());
+        room5.setItemsListRoom(new Statue());
+        room9.setItemsListRoom(new Sword());
+
+
+
+
         return new Room[]{room1, room2, room3, room4, room5, room6, room7, room8, room9};
     }
+        //return new Room[]{room1, room2, room3, room4, room5, room6, room7, room8, room9};
+
+}
 
 
 
-    }
 
 
 

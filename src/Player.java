@@ -1,59 +1,36 @@
-public class Player {
+import java.util.ArrayList;
 
-    public static Room southRoomCheck(Room currentRoom){
-        if (currentRoom.getFieldSouth() == null) {
-            System.out.println("There is not a path here. Try another way");
-            return currentRoom;
-        } else if (currentRoom.getFieldSouth() != null) {
-            currentRoom = currentRoom.getFieldSouth();
-            System.out.println("You went to " + currentRoom.getRoom() + ".");
-            System.out.println(currentRoom.getDescription());
-            return currentRoom;
-        } else {
-            System.out.println("Error in choosing room after validating user input");
-            return currentRoom;
-        }
+public class Player {
+    private Room currentRoom;
+    private ArrayList<Items> playerInventory = new ArrayList<>();
+
+
+    public Player(Room setCurrentRoom) {
+        this.currentRoom = setCurrentRoom;
     }
-    public static Room eastRoomCheck(Room currentRoom){
-        if (currentRoom.getFieldEast() == null) {
-            System.out.println("There is not a path here. Try another way");
-            return currentRoom;
-        } else if (currentRoom.getFieldEast() != null) {
-            currentRoom = currentRoom.getFieldEast();
-            System.out.println("You went to " + currentRoom.getRoom() + ".");
-            System.out.println(currentRoom.getDescription());
-            return currentRoom;
-        } else {
-            System.out.println("Error in choosing room after validating user input");
-            return currentRoom;
-        }
+
+
+
+    public Room getRoom() {
+        return this.currentRoom;
     }
-    public static Room westRoomCheck(Room currentRoom){
-        if (currentRoom.getFieldWest() == null) {
-            System.out.println("There is not a path here. Try another way");
-            return currentRoom;
-        } else if (currentRoom.getFieldWest() != null) {
-            currentRoom = currentRoom.getFieldWest();
-            System.out.println("You went to " + currentRoom.getRoom() + ".");
-            System.out.println(currentRoom.getDescription());
-            return currentRoom;
-        } else {
-            System.out.println("Error in choosing room after validating user input");
-            return currentRoom;
-        }
+
+    public void setRoom(Room passedRoom) {
+        this.currentRoom = passedRoom;
     }
-    public static Room northRoomCheck(Room currentRoom){
-        if (currentRoom.getFieldNorth() == null) {
-            System.out.println("There is not a path here. Try another way");
-            return currentRoom;
-        } else if (currentRoom.getFieldNorth() != null) {
-            currentRoom = currentRoom.getFieldNorth();
-            System.out.println("You went to " + currentRoom.getRoom() + ".");
-            System.out.println(currentRoom.getDescription());
-            return currentRoom;
-        } else {
-            System.out.println("Error in choosing room after validating user input");
-            return currentRoom;
-        }
+
+//OBS: NEXT TWO METHODS ARE OVERLOADED.
+    public void setPlayerInventory(Items passedItem){
+        playerInventory.add(passedItem);
     }
+
+    public void setPlayerInventory(ArrayList<Items> passedItem){
+        playerInventory = passedItem;
+    }
+
+    public ArrayList<Items> getPlayerInventory(){
+        return playerInventory;
+    }
+
+
 }
