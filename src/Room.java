@@ -84,13 +84,17 @@ public class Room {
             return "There are no items in this room";
         }else{
             StringBuilder buildingString = new StringBuilder();
-            buildingString.append("In this room there are: ");
+            buildingString.append("This room contains: ");
+            buildingString.append(itemListRoom.toString());
+            /*
             for (Items i: itemListRoom){
                 buildingString.append("a ");
                 buildingString.append(i);
                 buildingString.append(", ");
             }
-            return buildingString.toString();
+
+             */
+           return buildingString.toString();
 
 
         }

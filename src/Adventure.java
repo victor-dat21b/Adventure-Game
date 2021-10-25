@@ -17,6 +17,9 @@ public class Adventure {
         Player myPlayer = new Player(allRooms[0]); //Sets the players current room.
         boolean gameFlag = true;
         myInterface.userOutput(1);
+        myInterface.passOutput(allRooms[0].getDescription());
+        myInterface.passOutput(allRooms[0].getItems());
+
         while (gameFlag) {
             Room currentRoom = myPlayer.getRoom(); //Added for readability when used in code
             myInterface.userOutput(2);
@@ -49,7 +52,11 @@ public class Adventure {
                 dropItem(inputFromTheUser, currentRoom, myPlayer);
 
             } else if (inputFromTheUser.equals("inventory")) {
-                System.out.println(myPlayer.getPlayerInventory());
+                if (myPlayer.getPlayerInventory().isEmpty()) {
+                    myInterface.userOutput(6);
+                }else {
+                    myInterface.dynamicOutput(myPlayer.getPlayerInventoryString(), 7);
+                }
 
             }
         }
@@ -67,8 +74,9 @@ public class Adventure {
                 } else if (currentRoom.getFieldEast() != null) {
                     currentRoom = currentRoom.getFieldEast();
                     myInterface.dynamicOutput(currentRoom.getName(), 1);
-                    System.out.println(currentRoom.getDescription());
-                    System.out.println(currentRoom.getItems());
+                    myInterface.passOutput(currentRoom.getDescription());
+                    myInterface.passOutput(currentRoom.getItems());
+
                 }
                 break;
 
@@ -79,9 +87,9 @@ public class Adventure {
                     myInterface.userOutput(3);
                 } else if (currentRoom.getFieldWest() != null) {
                     currentRoom = currentRoom.getFieldWest();
-                    System.out.println("You went to " + currentRoom.getName() + ".");
-                    System.out.println(currentRoom.getDescription());
-                    System.out.println(currentRoom.getItems());
+                    myInterface.dynamicOutput(currentRoom.getName(), 1);
+                    myInterface.passOutput(currentRoom.getDescription());
+                    myInterface.passOutput(currentRoom.getItems());
                 }
 
                 break;
@@ -92,9 +100,9 @@ public class Adventure {
                     myInterface.userOutput(3);
                 } else if (currentRoom.getFieldSouth() != null) {
                     currentRoom = currentRoom.getFieldSouth();
-                    System.out.println("You went to " + currentRoom.getName() + ".");
-                    System.out.println(currentRoom.getDescription());
-                    System.out.println(currentRoom.getItems());
+                    myInterface.dynamicOutput(currentRoom.getName(), 1);
+                    myInterface.passOutput(currentRoom.getDescription());
+                    myInterface.passOutput(currentRoom.getItems());
                 }
                 break;
 
@@ -104,12 +112,11 @@ public class Adventure {
                     myInterface.userOutput(3);
                 } else if (currentRoom.getFieldNorth() != null) {
                     currentRoom = currentRoom.getFieldNorth();
-                    System.out.println("You went to " + currentRoom.getName() + ".");
-                    System.out.println(currentRoom.getDescription());
-                    System.out.println(currentRoom.getItems());
+                    myInterface.dynamicOutput(currentRoom.getName(), 1);
+                    myInterface.passOutput(currentRoom.getDescription());
+                    myInterface.passOutput(currentRoom.getItems());
                 }
                 break;
-
         }
         return currentRoom;
 
@@ -129,12 +136,12 @@ public class Adventure {
             }
         }
         if (toRemove.isEmpty()) {
-            System.out.println("There is no " + arrOfStr[1] + " here.");
+            myInterface.dynamicOutput(arrOfStr[1], 3);
         } else {
             myPlayer.setPlayerInventory(toRemove.get(0));
             currentList.removeAll(toRemove);
             currentRoom.updateItemList(currentList);
-            System.out.println(arrOfStr[1] + " added to inventory!");
+            myInterface.dynamicOutput(arrOfStr[1], 4);
         }
 
     }
@@ -151,12 +158,12 @@ public class Adventure {
             }
         }
         if (toRemove.isEmpty()) {
-            System.out.println("There is no " + arrOfStr[1] + " in your inventory");
+            myInterface.dynamicOutput(arrOfStr[1], 5);
         } else {
             currentRoom.updateItemList(toRemove.get(0));
             currentList.removeAll(toRemove);
             myPlayer.setPlayerInventory(currentList);
-            System.out.println(arrOfStr[1] + " removed from inventory and dropped on the ground.");
+            myInterface.dynamicOutput(arrOfStr[1], 6);
         }
 
 

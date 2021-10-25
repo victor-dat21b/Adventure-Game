@@ -1,5 +1,9 @@
-public class Items {
+public abstract class Items {
     private String name;
+
+    public Items(String name){
+        this.name = name;
+    }
 
     public String getName(){
         return this.name;
@@ -10,49 +14,44 @@ public class Items {
 class Lamp extends Items{
     private String name;
 
-    public Lamp(){
-        this.name = "Lamp";
+    public Lamp(String name){
+        super(name);
+        this.name =name;
     }
 
     public String toString(){
         return name;
     }
-    public String getName(){
-        return this.name;
+
     }
-}
+
 
 class Sword extends Items {
     private String name;
 
-    public Sword() {
-        this.name = "Sword";
-
-
+    public Sword(String name){
+        super(name);
+        this.name =name;
     }
     public String toString() {
         return name;
     }
 
-    public String getName(){
-        return this.name;
     }
 
-}
+
 class Statue extends Items {
     private String name;
 
-    public Statue() {
-        this.name = "Statue";
-
+    public Statue(String name){
+        super(name);
+        this.name =name;
     }
     public String toString() {
         return name;
     }
-    public String getName(){
-        return this.name;
     }
-}
+
 
 
 

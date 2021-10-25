@@ -19,6 +19,20 @@ public class Player {
         this.currentRoom = passedRoom;
     }
 
+    public String getPlayerInventoryString(){
+        return playerInventory.toString();
+        /*
+        StringBuilder buildingString = new StringBuilder();
+        for (Items i: playerInventory){
+            buildingString.append("a ");
+            buildingString.append(i);
+            buildingString.append(", ");
+        }
+        return buildingString.toString();
+
+         */
+    }
+
 //OBS: NEXT TWO METHODS ARE OVERLOADED.
     public void setPlayerInventory(Items passedItem){
         playerInventory.add(passedItem);

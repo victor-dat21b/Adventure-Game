@@ -6,22 +6,15 @@ public class Interface {
             case 1:
                 System.out.println("You were out hiking with some friends, when you suddenly fell down a hole.");
                 break;
-
             case 2:
                 System.out.println("What do you wish to do?");
                 break;
-
-
             case 3:
                 System.out.println("There is not a path here. Try another way");
                 break;
-
-
             case 4:
                 System.out.println("You exited the game.");
                 break;
-
-
             case 5:
                 System.out.println("Type go east, go north, go west, go south to " +
                         "move around the map.");
@@ -30,6 +23,8 @@ public class Interface {
                 System.out.println("Use the word -take- followed by the item you wish to take." +
                         "Example: take lamp.");
                 break;
+            case 6:
+                System.out.println("There is nothing in your inventory.");
 
 
         }
@@ -47,11 +42,22 @@ public class Interface {
                 System.out.println("You are in " + textSend);
                 break;
             case 3:
+                System.out.println(("There is no " + textSend + " here."));
 
                 break;
             case 4:
+                System.out.println(textSend + " added to inventory!");
 
                 break;
+            case 5:
+                System.out.println("There is no " + textSend + " in your inventory");
+                break;
+
+            case 6:
+                System.out.println(textSend + " removed from inventory and dropped on the ground.");
+                break;
+            case 7:
+                System.out.println("Your inventory contains: " + textSend);
 
         }
     }

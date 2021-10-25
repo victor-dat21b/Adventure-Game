@@ -31,11 +31,9 @@ public class Map {
         room7.setFieldEast(room8);
         room8.setFieldEast(room9);
 
-        room2.setItemsListRoom(new Lamp());
-        room2.setItemsListRoom(new Statue());
-        room2.setItemsListRoom(new Sword());
-        room5.setItemsListRoom(new Statue());
-        room9.setItemsListRoom(new Sword());
+        room2.setItemsListRoom(new Lamp("lamp"));
+        room5.setItemsListRoom(new Statue("statue"));
+        room9.setItemsListRoom(new Sword("sword"));
 
 
 
