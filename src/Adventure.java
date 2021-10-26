@@ -62,7 +62,7 @@ public class Adventure {
 
     }
 
-
+//MÅSKE FLYT I PLAYER
     public Room roomCheck(Room currentRoom, String sendText) {
         switch (sendText) {
             case "east":
@@ -74,10 +74,8 @@ public class Adventure {
                     myInterface.dynamicOutput(currentRoom.getName(), 1);
                     myInterface.passOutput(currentRoom.getDescription());
                     myInterface.passOutput(currentRoom.getItems());
-
                 }
                 break;
-
 
             case "west":
             case "go west":
@@ -89,7 +87,6 @@ public class Adventure {
                     myInterface.passOutput(currentRoom.getDescription());
                     myInterface.passOutput(currentRoom.getItems());
                 }
-
                 break;
 
             case "south":
@@ -120,12 +117,12 @@ public class Adventure {
 
     }
 
-
+//FLYT TIL PLAYER
     // Taking item from the currentroom object, adds it to playerinventory and updates the new room itemlist.
     //OBS: The thing that is being looked for is searched using the passed string by splitting it!!!
     public void tryToTakeItems(String sendText, Room currentRoom, Player myPlayer) {
         String[] arrOfStr = sendText.split(" ");
-        ArrayList<Items> currentList = currentRoom.getItemsInRoom();
+        ArrayList<Items> currentList = currentRoom.getItemsInRoom(); //Måske vil den ikke iterere over en liste fordi jeg importere den.
         ArrayList<Items> toRemove = new ArrayList<>();
         for (Items str : currentList) {
             if (str.getName().equalsIgnoreCase(arrOfStr[1])) {
@@ -144,7 +141,7 @@ public class Adventure {
 
     }
 
-
+//FLYT TIL PLAYER
     public void dropItem(String sendText, Room currentRoom, Player myPlayer) {
         String[] arrOfStr = sendText.split(" ");
         ArrayList<Items> currentList = myPlayer.getPlayerInventory();

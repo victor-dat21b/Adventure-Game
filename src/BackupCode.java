@@ -390,5 +390,24 @@ class Statue extends Items {
     }
 }
 
+public void tryToTakeItems(String sendText, Room currentRoom, Player myPlayer) {
+        String[] arrOfStr = sendText.split(" ");
+        ArrayList<Items> currentList = currentRoom.getItemsInRoom();
+        ArrayList<Items> toRemove = new ArrayList<>();
+        for (Items str : currentList) {
+            if (str.getName().equalsIgnoreCase(arrOfStr[1])) {
+                toRemove.add(str);
+                break;
+            }
+        }
+        if (toRemove.isEmpty()) {
+            myInterface.dynamicOutput(arrOfStr[1], 3);
+        } else {
+            myPlayer.setPlayerInventory(toRemove.get(0));
+            currentList.removeAll(toRemove);
+            currentRoom.updateItemList(currentList);
+            myInterface.dynamicOutput(arrOfStr[1], 4);
+        }
 
+    }
          */

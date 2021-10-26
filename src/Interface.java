@@ -1,6 +1,6 @@
 public class Interface {
 
-
+//BÅDE INHOLD INPUT OG OUTPUT(SCANNER). FLYT WHILELOOP TIL DENNE KLASSE
     public void userOutput (int chooseOutput){ //Static text
         switch (chooseOutput){
             case 1:
