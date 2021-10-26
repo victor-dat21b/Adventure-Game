@@ -9,7 +9,6 @@ public class Adventure {
         begin.start();
     }
 
-
     public void start() {
         Scanner in = new Scanner(System.in);
         Map myMap = new Map();
@@ -45,7 +44,6 @@ public class Adventure {
             } else if (inputFromTheUser.equals("take lamp") || (inputFromTheUser.equals("take sword")) ||
                     (inputFromTheUser.equals("take statue"))) {
                 tryToTakeItems(inputFromTheUser, currentRoom, myPlayer);
-
 
             } else if (inputFromTheUser.equals("drop lamp") || (inputFromTheUser.equals("drop sword")) ||
                     (inputFromTheUser.equals("drop statue"))) {

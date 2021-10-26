@@ -7,7 +7,7 @@ public class Map {
         //Pass arraylist of items to room
         Room room1 = new Room("Room 1", "In the ceiling above " +
                 "you see the hole in which " +
-                "you fell down. Nothing else is in the cave");
+                "you fell down.");
         Room room2 = new Room("Room 2", "You feel something slithering " +
                 "along in the dark " +
                 "and notices that the room is full of snakes.");

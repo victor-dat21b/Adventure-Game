@@ -5,6 +5,8 @@ public class Interface {
         switch (chooseOutput){
             case 1:
                 System.out.println("You were out hiking with some friends, when you suddenly fell down a hole.");
+                System.out.println("You can see that north and west is blocked from big rocks laying on the ground.");
+                System.out.println("South and east seems clear!");
                 break;
             case 2:
                 System.out.println("What do you wish to do?");
