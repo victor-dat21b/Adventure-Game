@@ -1,6 +1,76 @@
+import java.util.Scanner;
 public class Interface {
 
 //BÅDE INHOLD INPUT OG OUTPUT(SCANNER). FLYT WHILELOOP TIL DENNE KLASSE
+
+
+    public static void main(String[] args) {
+        Interface myInterface = new Interface();
+        myInterface.startGame();
+    }
+
+
+
+    public void startGame(){
+        Scanner in = new Scanner(System.in);
+        Adventure myAdventure = new Adventure();
+        System.out.println("You were out hiking with some friends, when you suddenly fell down a hole.");
+        System.out.println("You can see that north and west is blocked from big rocks laying on the ground.");
+        System.out.println("South and east seems clear!");
+        //room description
+        //room item description
+        boolean gameFlag = true;
+        while (gameFlag) {
+            System.out.println("What do you wish to do?");
+            String inputFromTheUser = in.nextLine();
+            if (inputFromTheUser.equals("east") || (inputFromTheUser.equals("go east")) || (inputFromTheUser.equals("west")
+                    || (inputFromTheUser.equals("go west"))) || (inputFromTheUser.equals("south") || (inputFromTheUser.equals("go south"))
+                    || (inputFromTheUser.equals("north") || (inputFromTheUser.equals("go north"))))) {
+                if (myAdventure.tryToMoveRoom(inputFromTheUser)) {
+                    myAdventure.moveRoom(inputFromTheUser);
+                    System.out.println("You went to " + myAdventure.infoWhenPlayerMoved());
+
+                }else{
+                    System.out.println("There is not a path here. Try to go another way");
+                }
+
+
+            } else if (inputFromTheUser.equals("exit")) {
+                gameFlag = false;
+                System.out.println("You exited the game.");
+
+            } else if (inputFromTheUser.equals("look")) {
+
+
+            } else if (inputFromTheUser.equals("help")) {
+
+
+            } else if (inputFromTheUser.equals("take lamp") || (inputFromTheUser.equals("take sword")) ||
+                    (inputFromTheUser.equals("take statue"))) {
+
+
+
+            } else if (inputFromTheUser.equals("drop lamp") || (inputFromTheUser.equals("drop sword")) ||
+                    (inputFromTheUser.equals("drop statue"))) {
+
+
+            } else if (inputFromTheUser.equals("inventory")) {
+            if (myAdventure.inventoryStatus()){
+              System.out.println("In your iventory are: " + myAdventure.getStringInventory());
+            }
+                }else {  System.out.println("There is nothing in your inventory");
+
+
+                }
+
+            }
+        }
+
+
+
+
+
+
     public void userOutput (int chooseOutput){ //Static text
         switch (chooseOutput){
             case 1:

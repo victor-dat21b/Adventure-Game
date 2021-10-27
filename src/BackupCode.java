@@ -410,4 +410,48 @@ public void tryToTakeItems(String sendText, Room currentRoom, Player myPlayer) {
         }
 
     }
+
+
+    while (gameFlag) {
+            Room currentRoom = myPlayer.getRoom(); //Added for readability when used in code
+            myInterface.userOutput(2);
+            String inputFromTheUser = in.nextLine();
+            if (inputFromTheUser.equals("east") || (inputFromTheUser.equals("go east")) || (inputFromTheUser.equals("west")
+                    || (inputFromTheUser.equals("go west"))) || (inputFromTheUser.equals("south") || (inputFromTheUser.equals("go south"))
+                    || (inputFromTheUser.equals("north") || (inputFromTheUser.equals("go north"))))) {
+
+                myPlayer.setRoom((roomCheck(currentRoom, inputFromTheUser)));
+
+
+            } else if (inputFromTheUser.equals("exit")) {
+                gameFlag = false;
+                myInterface.userOutput(4);
+
+            } else if (inputFromTheUser.equals("look")) {
+                myInterface.dynamicOutput(currentRoom.getName(), 2);
+                myInterface.passOutput(currentRoom.getItems());
+
+            } else if (inputFromTheUser.equals("help")) {
+                myInterface.userOutput(5);
+
+            } else if (inputFromTheUser.equals("take lamp") || (inputFromTheUser.equals("take sword")) ||
+                    (inputFromTheUser.equals("take statue"))) {
+                tryToTakeItems(inputFromTheUser, currentRoom, myPlayer);
+
+            } else if (inputFromTheUser.equals("drop lamp") || (inputFromTheUser.equals("drop sword")) ||
+                    (inputFromTheUser.equals("drop statue"))) {
+                dropItem(inputFromTheUser, currentRoom, myPlayer);
+
+            } else if (inputFromTheUser.equals("inventory")) {
+                if (myPlayer.getPlayerInventory().isEmpty()) {
+                    myInterface.userOutput(6);
+                }else {
+                    myInterface.dynamicOutput(myPlayer.getPlayerInventoryString(), 7);
+                }
+
+            }
+        }
+
+
+
          */
