@@ -1,9 +1,9 @@
 public class Map {
-
+private Room[] myRooms;
 
 
     //Game opretter et map der laver alle rooms. Game fortæller hvilket rum player skal befinde sig i.
-    public Room[] mapCreationArray() {
+    public Map() {
         //Pass arraylist of items to room
         Room room1 = new Room("Room 1", "In the ceiling above " +
                 "you see the hole in which " +
@@ -37,11 +37,15 @@ public class Map {
         room9.setItemsListRoom(new Sword("sword"));
 
 
-
-
-        return new Room[]{room1, room2, room3, room4, room5, room6, room7, room8, room9};
+        myRooms = new Room[]{room1, room2, room3, room4, room5, room6, room7, room8, room9};
     }
-        //return new Room[]{room1, room2, room3, room4, room5, room6, room7, room8, room9};
+
+    public Room returnStartRoom(){
+        return myRooms[0];
+    }
+
+
+
 
 }
 
