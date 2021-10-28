@@ -11,7 +11,7 @@ public class Player {
 
 
 
-    public void setPlayerCurrentRoom(String sendText){
+    public void moveRoom(String sendText){
         switch (sendText) {
             case "east":
             case "go east":
@@ -119,6 +119,15 @@ public class Player {
     }
 
 
+    public boolean roomItemsBool(){
+        if (this.currentRoom.getItemsInRoom().isEmpty()){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+
 
 
 
@@ -170,6 +179,51 @@ public class Player {
 
     }
 
+    public boolean tryToTakeItems(String sendText) {
+        String[] arrOfStr = sendText.split(" ");
+        ArrayList<Items> currentList = this.currentRoom.getItemsInRoom(); //Måske vil den ikke iterere over en liste fordi jeg importere den.
+        ArrayList<Items> toRemove = new ArrayList<>();
+        for (Items str : currentList) {
+            if (str.getName().equalsIgnoreCase(arrOfStr[1])) {
+                toRemove.add(str);
+                break;
+            }
+        }
+            if (toRemove.isEmpty()) {
+            return false;// myInterface.dynamicOutput(arrOfStr[1], 3);
+            } else {
+            setPlayerInventory(toRemove.get(0));
+            currentList.removeAll(toRemove);
+            currentRoom.updateItemList(currentList);
+            // myInterface.dynamicOutput(arrOfStr[1], 4);
+            return true;
+            }
+
+    }
+
+    //FLYT TIL PLAYER
+    public boolean dropItem(String sendText) {
+        String[] arrOfStr = sendText.split(" ");
+        ArrayList<Items> currentList = getPlayerInventory();
+        ArrayList<Items> toRemove = new ArrayList<>();
+        for (Items str : currentList) {
+            if (str.getName().equalsIgnoreCase(arrOfStr[1])) {
+                toRemove.add(str);
+                break;
+            }
+        }
+        if (toRemove.isEmpty()) {
+            return false;
+        } else {
+            currentRoom.updateItemList(toRemove.get(0));
+            currentList.removeAll(toRemove);
+            setPlayerInventory(currentList);
+            //myInterface.dynamicOutput(arrOfStr[1], 6);
+        }
+        return true;
+
+
+    }
 
 
 

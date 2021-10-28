@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.Scanner;
 public class Adventure {
     private Map myMap;
     private Player myPlayer;
@@ -11,7 +9,10 @@ public class Adventure {
     }
 
 
-
+    public static void main(String[] args) {
+        UserInterface myUserInterface = new UserInterface();
+        myUserInterface.startGame();
+    }
 
     public boolean tryToMoveRoom(String sendText) {
     return myPlayer.roomCheck(sendText);
@@ -19,11 +20,11 @@ public class Adventure {
 
 
     public void moveRoom(String sendText){
-        myPlayer.setPlayerCurrentRoom(sendText);
+        myPlayer.moveRoom(sendText);
 
     }
 
-    public String infoWhenPlayerMoved(){
+    public String roomInformation(){
         return this.myPlayer.roomInfo();
     }
 
@@ -33,6 +34,18 @@ public class Adventure {
 
     public boolean inventoryStatus(){
         return myPlayer.inventoryStorageStatus();
+    }
+
+    public boolean roomItemsBool(){
+        return myPlayer.roomItemsBool();
+    }
+
+    public boolean tryTotakeItem(){
+        return myPlayer.roomItemsBool();
+    }
+
+    public boolean dropItems(String sendText){
+        return myPlayer.dropItem(sendText);
     }
 
 
