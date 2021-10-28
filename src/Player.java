@@ -119,6 +119,8 @@ public class Player {
     }
 
 
+
+
     public boolean roomItemsBool(){
         if (this.currentRoom.getItemsInRoom().isEmpty()){
             return false;
@@ -128,57 +130,8 @@ public class Player {
     }
 
 
-
-
-
-
-    //FLYT TIL PLAYER
     // Taking item from the currentroom object, adds it to playerinventory and updates the new room itemlist.
     //OBS: The thing that is being looked for is searched using the passed string by splitting it!!!
-    public void tryToTakeItems(String sendText, Room currentRoom, Player myPlayer) {
-        String[] arrOfStr = sendText.split(" ");
-        ArrayList<Items> currentList = currentRoom.getItemsInRoom(); //Måske vil den ikke iterere over en liste fordi jeg importere den.
-        ArrayList<Items> toRemove = new ArrayList<>();
-        for (Items str : currentList) {
-            if (str.getName().equalsIgnoreCase(arrOfStr[1])) {
-                toRemove.add(str);
-                break;
-            }
-        }
-        if (toRemove.isEmpty()) {
-            // myInterface.dynamicOutput(arrOfStr[1], 3);
-        } else {
-            myPlayer.setPlayerInventory(toRemove.get(0));
-            currentList.removeAll(toRemove);
-            currentRoom.updateItemList(currentList);
-            // myInterface.dynamicOutput(arrOfStr[1], 4);
-        }
-
-    }
-
-    //FLYT TIL PLAYER
-    public void dropItem(String sendText, Room currentRoom, Player myPlayer) {
-        String[] arrOfStr = sendText.split(" ");
-        ArrayList<Items> currentList = myPlayer.getPlayerInventory();
-        ArrayList<Items> toRemove = new ArrayList<>();
-        for (Items str : currentList) {
-            if (str.getName().equalsIgnoreCase(arrOfStr[1])) {
-                toRemove.add(str);
-                break;
-            }
-        }
-        if (toRemove.isEmpty()) {
-            //  myInterface.dynamicOutput(arrOfStr[1], 5);
-        } else {
-            currentRoom.updateItemList(toRemove.get(0));
-            currentList.removeAll(toRemove);
-            myPlayer.setPlayerInventory(currentList);
-            //myInterface.dynamicOutput(arrOfStr[1], 6);
-        }
-
-
-    }
-
     public boolean tryToTakeItems(String sendText) {
         String[] arrOfStr = sendText.split(" ");
         ArrayList<Items> currentList = this.currentRoom.getItemsInRoom(); //Måske vil den ikke iterere over en liste fordi jeg importere den.
@@ -194,7 +147,7 @@ public class Player {
             } else {
             setPlayerInventory(toRemove.get(0));
             currentList.removeAll(toRemove);
-            currentRoom.updateItemList(currentList);
+            this.currentRoom.updateItemList(currentList);
             // myInterface.dynamicOutput(arrOfStr[1], 4);
             return true;
             }
@@ -215,10 +168,9 @@ public class Player {
         if (toRemove.isEmpty()) {
             return false;
         } else {
-            currentRoom.updateItemList(toRemove.get(0));
+            this.currentRoom.updateItemList(toRemove.get(0));
             currentList.removeAll(toRemove);
             setPlayerInventory(currentList);
-            //myInterface.dynamicOutput(arrOfStr[1], 6);
         }
         return true;
 

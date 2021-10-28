@@ -9,10 +9,15 @@ public class Adventure {
     }
 
 
+
     public static void main(String[] args) {
         UserInterface myUserInterface = new UserInterface();
         myUserInterface.startGame();
     }
+
+
+
+
 
     public boolean tryToMoveRoom(String sendText) {
     return myPlayer.roomCheck(sendText);
@@ -40,8 +45,8 @@ public class Adventure {
         return myPlayer.roomItemsBool();
     }
 
-    public boolean tryTotakeItem(){
-        return myPlayer.roomItemsBool();
+    public boolean tryToTakeItem(String sendText){
+        return myPlayer.tryToTakeItems(sendText);
     }
 
     public boolean dropItems(String sendText){
