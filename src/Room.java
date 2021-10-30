@@ -10,6 +10,7 @@ public class Room {
     private String name;
     private String description;
     private ArrayList<Items> itemListRoom = new ArrayList<>();
+    private ArrayList<Enemy> roomEnemies = new ArrayList<>();
 
 
     Room(String ne, String desCript) {
@@ -24,7 +25,7 @@ public class Room {
     // Er ikke brugt på nuverende tidspunkt, men kan blive brugt ved udvidelse af mappet.
     public void setFieldNorth(Room rnN) {
         this.north = rnN;
-        if (rnN.getFieldSouth() == null) {
+        if (rnN.south == null) {
             rnN.setFieldSouth(this);
         }
 
@@ -41,7 +42,7 @@ public class Room {
 
     public void setFieldEast(Room rnE) {
         this.east = rnE;
-        if (rnE.getFieldWest() == null) {
+        if (rnE.west == null) {
             rnE.setFieldWest(this);
         }
 
@@ -50,7 +51,7 @@ public class Room {
 
     public void setFieldWest(Room rnW) {
         this.west = rnW;
-        if (rnW.getFieldEast() == null) {
+        if (rnW.east == null) {
             rnW.setFieldEast(this);
         }
     }
@@ -59,25 +60,6 @@ public class Room {
         this.itemListRoom.add(passedItems);
     }
 
-
-    public Room getFieldNorth() {
-        return this.north;
-
-    }
-
-    public Room getFieldSouth() {
-        return this.south;
-
-    }
-
-    public Room getFieldEast() {
-        return this.east;
-
-    }
-
-    public Room getFieldWest() {
-        return this.west;
-    }
 
 
     public String getDescription() {
@@ -96,19 +78,10 @@ public class Room {
             StringBuilder buildingString = new StringBuilder();
             buildingString.append("This room contains: ");
             buildingString.append(itemListRoom.toString());
-            /*
-            for (Items i: itemListRoom){
-                buildingString.append("a ");
-                buildingString.append(i);
-                buildingString.append(", ");
-            }
-
-             */
             return buildingString.toString();
-
-
         }
     }
+
 
     public ArrayList<Items> getItemsInRoom() {
         return itemListRoom;
@@ -195,4 +168,12 @@ public class Room {
         }
         return sendRoom;
     }
+
+
+    public void addRoomEnemy(Enemy passedEnemy){
+        this.roomEnemies.add(passedEnemy);
+    }
+
+
+
 }

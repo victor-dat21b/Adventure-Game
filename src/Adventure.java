@@ -76,6 +76,21 @@ public class Adventure {
     }
 
 
+    public boolean weaponEquipped(){
+        return myPlayer.getEquippedStatus();
+    }
+
+
+
+    public boolean equipWeapon(String sendText){
+        return myPlayer.equipWeapon(sendText);
+    }
+
+    public void unequipWeapon(){
+        myPlayer.unequipWeapon();
+    }
+
+
 }
 
 

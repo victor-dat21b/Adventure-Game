@@ -5,6 +5,7 @@ public class Player {
     private ArrayList<Items> playerInventory = new ArrayList<>();
     private int health;
     private String[] arrOfStr;
+    private Weapon playerWeapon = null;
 
 
     public Player(Room setCurrentRoom) {
@@ -81,7 +82,7 @@ public class Player {
             }
         }
         if (toRemove.isEmpty()) {
-            return false;// myInterface.dynamicOutput(arrOfStr[1], 3);
+            return false;
         } else {
             setPlayerInventory(toRemove.get(0));
             currentList.removeAll(toRemove);
@@ -112,6 +113,15 @@ public class Player {
         return true;
 
 
+    }
+
+
+    public boolean getEquippedStatus(){
+        if(this.playerWeapon == null){
+            return false;
+        } else {
+            return true;
+        }
     }
 
 
@@ -173,6 +183,52 @@ public class Player {
         }
         return sendFood;
         }
+
+
+
+    public boolean equipWeapon(String sendText) {
+        boolean myBool = false;
+        this.arrOfStr = sendText.split(" ");
+        ArrayList<Items> currentList = this.currentRoom.getItemsInRoom();
+        ArrayList<Items> toRemove = new ArrayList<>();
+        for (Items str : currentList) {
+            if (str.getName().equalsIgnoreCase(arrOfStr[1])) {
+                toRemove.add(str);
+                break;
+            }
+        }
+        if (toRemove.isEmpty()) {
+            ArrayList<Items> currentListSecond = getPlayerInventory();
+            ArrayList<Items> toRemoveSecond = new ArrayList<>();
+            for (Items str : currentListSecond) {
+                if (str.getName().equalsIgnoreCase(arrOfStr[1])) {
+                    toRemoveSecond.add(str);
+                    break;
+                }
+            } if (!toRemoveSecond.isEmpty()){
+                myBool = true;
+                this.playerWeapon = (Weapon) toRemoveSecond.get(0);
+                currentListSecond.removeAll(toRemoveSecond);
+                setPlayerInventory(currentListSecond);
+            }
+        } else if(!toRemove.isEmpty()){
+            myBool = true;
+            this.playerWeapon = (Weapon) toRemove.get(0);
+            currentList.removeAll(toRemove);
+            this.currentRoom.updateItemList(currentList);
+        }
+        return myBool;
+    }
+
+
+    public void unequipWeapon(){
+        this.playerInventory.add(this.playerWeapon);
+        this.playerWeapon = null;
+    }
+
+
+
+
     }
 
 
