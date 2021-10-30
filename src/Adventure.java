@@ -52,6 +52,28 @@ public class Adventure {
     public boolean dropItems(String sendText){
         return myPlayer.dropItem(sendText);
     }
+    public int getPlayerHealth(){
+        return myPlayer.getPlayerHealth();
+    }
+    public void setPlayerHealth(int updateHealth){
+        myPlayer.setPlayerHealth(updateHealth);
+    }
+
+    public boolean lookForFood(String sendText){
+        return myPlayer.lookForFood(sendText);
+    }
+
+    public boolean eatFood(String sendText){
+        Food eatenFood = myPlayer.eatFood(sendText);
+        myPlayer.setPlayerHealth(eatenFood.getHealthPoints());
+        boolean boolFood = false;
+        if(eatenFood.getHealthPoints() > 0){
+            boolFood = true;
+        }else if (eatenFood.getHealthPoints() < 0){
+            boolFood = false;
+        }
+        return boolFood;
+    }
 
 
 }

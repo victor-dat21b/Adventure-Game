@@ -12,60 +12,70 @@ public class Room {
     private ArrayList<Items> itemListRoom = new ArrayList<>();
 
 
-
     Room(String ne, String desCript) {
         this.name = ne;
         this.description = desCript;
     }
-    Room(){
-        }
+
+    Room() {
+    }
 
 
-// Er ikke brugt på nuverende tidspunkt, men kan blive brugt ved udvidelse af mappet.
+    // Er ikke brugt på nuverende tidspunkt, men kan blive brugt ved udvidelse af mappet.
     public void setFieldNorth(Room rnN) {
         this.north = rnN;
-        if (rnN.getFieldSouth() == null){
+        if (rnN.getFieldSouth() == null) {
             rnN.setFieldSouth(this);
         }
 
 
-    }public void setFieldSouth(Room rnS) {
+    }
+
+    public void setFieldSouth(Room rnS) {
         this.south = rnS;
-        if (rnS.getFieldNorth() == null){
+        if (rnS.north == null) {
             rnS.setFieldNorth(this);
         }
 
-    }public void setFieldEast(Room rnE) {
+    }
+
+    public void setFieldEast(Room rnE) {
         this.east = rnE;
-        if (rnE.getFieldWest() == null){
+        if (rnE.getFieldWest() == null) {
             rnE.setFieldWest(this);
         }
 
 // Er ikke brugt på nuverende tidspunkt, men kan blive brugt ved udvidelse af mappet.
-    }public void setFieldWest(Room rnW) {
+    }
+
+    public void setFieldWest(Room rnW) {
         this.west = rnW;
         if (rnW.getFieldEast() == null) {
             rnW.setFieldEast(this);
         }
     }
-        public void setItemsListRoom(Items passedItems){
-            this.itemListRoom.add(passedItems);
-        }
 
-
-
+    public void setItemsListRoom(Items passedItems) {
+        this.itemListRoom.add(passedItems);
+    }
 
 
     public Room getFieldNorth() {
         return this.north;
 
-    }public Room getFieldSouth() {
+    }
+
+    public Room getFieldSouth() {
         return this.south;
 
-    }public Room getFieldEast() {
+    }
+
+    public Room getFieldEast() {
         return this.east;
 
-    }public Room getFieldWest() {
+    }
+
+    public Room getFieldWest() {
         return this.west;
     }
 
@@ -74,15 +84,15 @@ public class Room {
         return this.description;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public String getItems(){
+    public String getItems() {
 
-        if (itemListRoom.isEmpty()){
+        if (itemListRoom.isEmpty()) {
             return "There are no items in this room";
-        }else{
+        } else {
             StringBuilder buildingString = new StringBuilder();
             buildingString.append("This room contains: ");
             buildingString.append(itemListRoom.toString());
@@ -94,23 +104,95 @@ public class Room {
             }
 
              */
-           return buildingString.toString();
+            return buildingString.toString();
 
 
         }
     }
-    public ArrayList<Items> getItemsInRoom(){
+
+    public ArrayList<Items> getItemsInRoom() {
         return itemListRoom;
     }
 
     //OBS: NEXT TWO METHODS ARE OVERLOADED.
-    public void updateItemList(Items passedItem){
+    public void updateItemList(Items passedItem) {
         itemListRoom.add(passedItem);
-}
+    }
 
-    public void updateItemList(ArrayList<Items> passedItem){
+    public void updateItemList(ArrayList<Items> passedItem) {
         itemListRoom = passedItem;
     }
 
 
+    public boolean roomCheck(String sendText) {
+        boolean myBool = false;
+        switch (sendText) {
+            case "east":
+            case "go east":
+                if (this.east == null) {
+                    myBool = false;
+                } else if (this.east != null) {
+                    myBool = true;
+                }
+                break;
+
+            case "west":
+            case "go west":
+                if (this.west == null) {
+                    myBool = false;
+                } else if (this.west != null) {
+                    myBool = true;
+                }
+                break;
+
+
+            case "south":
+            case "go south":
+                if (this.south == null) {
+                    myBool = false;
+                } else if (this.south != null) {
+                    myBool = true;
+                }
+                break;
+
+
+            case "north":
+            case "go north":
+                if (this.north == null) {
+                    myBool = false;
+                } else if (this.north != null) {
+                    myBool = true;
+                }
+                break;
+        }
+        return myBool;
+
     }
+
+
+    public Room moveRoom(String sendText) {
+        Room sendRoom = null;
+        switch (sendText) {
+            case "east":
+            case "go east":
+                sendRoom = this.east;
+                break;
+
+            case "west":
+            case "go west":
+                sendRoom = this.west;
+                break;
+
+            case "south":
+            case "go south":
+                sendRoom = this.south;
+                break;
+
+            case "north":
+            case "go north":
+                sendRoom = this.north;
+                break;
+        }
+        return sendRoom;
+    }
+}

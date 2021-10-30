@@ -34,7 +34,8 @@ private Room[] myRooms;
 
         room2.setItemsListRoom(new Lamp("lamp"));
         room5.setItemsListRoom(new Statue("statue"));
-        room9.setItemsListRoom(new Sword("sword"));
+        room1.setItemsListRoom(new Food("apple", 25));
+        room1.setItemsListRoom(new Food("potato", -30));
 
 
         myRooms = new Room[]{room1, room2, room3, room4, room5, room6, room7, room8, room9};

@@ -43,22 +43,26 @@ public class UserInterface {
 
 
             } else if (inputFromTheUser.equals("take lamp") || (inputFromTheUser.equals("take sword")) ||
-                    (inputFromTheUser.equals("take statue"))) {
+                    (inputFromTheUser.equals("take statue")) || (inputFromTheUser.equals("take apple")) ||
+                    (inputFromTheUser.equals("take potato"))) {
+                String[] arrOfStr = inputFromTheUser.split(" ");
                 if (!myAdventure.roomItemsBool()) {
                     System.out.println("There is nothing to take in the room.");
                 } else if (!myAdventure.tryToTakeItem(inputFromTheUser)) {
                     System.out.println("Item could not be taken since its not in the room.");
                 } else {
-                    System.out.println("Item taken from room and added to inventory!");
+                    System.out.println(arrOfStr[1] + " taken from room and added to inventory!");
                 }
 
 
             } else if (inputFromTheUser.equals("drop lamp") || (inputFromTheUser.equals("drop sword")) ||
-                    (inputFromTheUser.equals("drop statue"))) {
+                    (inputFromTheUser.equals("drop statue")) || (inputFromTheUser.equals("drop apple")) ||
+                    (inputFromTheUser.equals("drop potato"))) {
+                String[] arrOfStr = inputFromTheUser.split(" ");
                 if (!myAdventure.dropItems(inputFromTheUser)) {
-                    System.out.println("Item is not in inventory and could not be dropped.");
+                    System.out.println(arrOfStr[1] + " is not in inventory and could not be dropped.");
                 } else {
-                    System.out.println("Item dropped.");
+                    System.out.println(arrOfStr[1] + " dropped.");
                 }
 
 
@@ -69,7 +73,45 @@ public class UserInterface {
                     System.out.println("There is nothing in your inventory");
                 }
 
+            } else if (inputFromTheUser.equals("health")) {
+            int health = myAdventure.getPlayerHealth();
+            if (health > 50){
+                System.out.println("You have " + health + " in health. You seem in good shape to fight.");
+            } else if (health <= 50){
+                System.out.println("You have " + health + " in health. You have less than half in health and probably should´nt fight right now.");
             }
-        }
+
+
+        } else if ((inputFromTheUser.equals("eat apple") || (inputFromTheUser.equals("eat potato")))){
+                String[] arrOfStr = inputFromTheUser.split(" ");
+                if (myAdventure.lookForFood(inputFromTheUser)){
+                    boolean myBool = myAdventure.eatFood(inputFromTheUser);
+                    if(myBool){
+                        System.out.println("Food eaten! It tasted great and your health increased!");
+                    } else if(!myBool){
+                        System.out.println("The food was bad and you lost health!");
+                    }
+                }else{
+                    System.out.println(arrOfStr[1] + " is neither in your inventory or in room and therefore cannot be eaten.");
+                }
+            }else if (inputFromTheUser.equals("equip")) {
+                if (myAdventure.inventoryStatus()) {
+                    System.out.println("In your inventory are: " + myAdventure.getStringInventory());
+                } else {
+                    System.out.println("There is nothing in your inventory");
+                }
+
+            }else if (inputFromTheUser.equals("unequip")) {
+                if (myAdventure.inventoryStatus()) {
+                    System.out.println("In your inventory are: " + myAdventure.getStringInventory());
+                } else {
+                    System.out.println("There is nothing in your inventory");
+                }
+
+
+            }else{
+                System.out.println("Error, wrong input, try again.");
+            }
+    }
     }
 }
