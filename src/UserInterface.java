@@ -2,10 +2,10 @@ import java.util.Scanner;
 public class UserInterface {
 
 
-
     public void startGame() {
         Scanner in = new Scanner(System.in);
         Adventure myAdventure = new Adventure();
+        startScreen();
         System.out.println("You were out hiking with some friends, when you suddenly fell down a hole.");
         System.out.println("You are in " + myAdventure.roomInformation());
         boolean gameFlag = true;
@@ -93,7 +93,7 @@ public class UserInterface {
                 } else {
                     System.out.println(arrOfStr[1] + " is neither in your inventory or in room and therefore cannot be eaten.");
                 }
-                if (myAdventure.getPlayerHealth() <= 0){
+                if (myAdventure.getPlayerHealth() <= 0) {
                     System.out.println("You died. Game over!");
                     gameFlag = false;
                     break;
@@ -113,48 +113,48 @@ public class UserInterface {
                     myAdventure.unequipWeapon();
                     System.out.println("Weapon unequipped and added to inventory!");
 
-                } else{
+                } else {
                     System.out.println("You have no weapon equipped and therefore nothing to unequip.");
                 }
 
 
             } else if (userInput.equals("attack")) {
-                if (myAdventure.checkForEnemy()){
+                if (myAdventure.checkForEnemy()) {
                     fightingLoop(in, myAdventure);
-                    if (myAdventure.getPlayerHealth() <= 0){
+                    if (myAdventure.getPlayerHealth() <= 0) {
                         gameFlag = false;
                     }
-                } else{
+                } else {
                     System.out.println("There is no enemy in this room.");
                 }
 
 
-            } else{
+            } else {
                 System.out.println("Error, wrong input, try again.");
             }
-    }
+        }
     }
 
 
-    public void fightingLoop(Scanner in, Adventure myAdventure){
+    public void fightingLoop(Scanner in, Adventure myAdventure) {
         String userInput;
         boolean fightingFlag = true;
         System.out.println("You have entered combat with " + myAdventure.getStringEnemy() + ".");
-        while (fightingFlag){
+        while (fightingFlag) {
             System.out.println(myAdventure.getFightStatus());
             System.out.println("You can either attack or run. What do you wish to do?");
             userInput = in.nextLine();
-            if(userInput.equals("attack")){
-                if(myAdventure.attackEnemy()){
+            if (userInput.equals("attack")) {
+                if (myAdventure.attackEnemy()) {
                     System.out.println("You attack the enemy with your " + myAdventure.getPlayerWeapon() + ".");
                     System.out.println("You dealt " + myAdventure.getPlayerDamage() + " damage.");
-                } else{
+                } else {
                     System.out.println("You attacked the enemy with your fists.");
                     System.out.println("You dealt " + myAdventure.getPlayerDamage() + " damage.");
                 }
-                if (myAdventure.getEnemyHealth() <= 0){
+                if (myAdventure.getEnemyHealth() <= 0) {
                     System.out.println("Enemy died! You won the fight! The enemy dropped its loot in the room.");
-                    if(myAdventure.doesEnemyHaveWeapon()) {
+                    if (myAdventure.doesEnemyHaveWeapon()) {
                         myAdventure.dropEnemyWeapon();
                     }
                     myAdventure.removeEnemyFromRoom();
@@ -163,17 +163,17 @@ public class UserInterface {
                 }
                 myAdventure.playerGetsHit();
                 System.out.println("You took damage from an enemy attack!");
-                if (myAdventure.getPlayerHealth() <= 0){
+                if (myAdventure.getPlayerHealth() <= 0) {
                     System.out.println("You died. Game over!");
                     fightingFlag = false;
                     break;
                 }
 
-            }else if(userInput.equals("run")){
+            } else if (userInput.equals("run")) {
                 System.out.println("You ran away from the fight.");
                 fightingFlag = false;
 
-            } else{
+            } else {
                 System.out.println("Error wring input, try again.");
             }
         }
@@ -182,5 +182,15 @@ public class UserInterface {
     }
 
 
-
+    public void startScreen() {
+        StringBuilder buildingString = new StringBuilder();
+        buildingString.append("-----------------------------------------------");
+        buildingString.append(System.getProperty("line.separator"));
+        buildingString.append("                  Welcome to:          ");
+        buildingString.append(System.getProperty("line.separator"));
+        buildingString.append("            The caves of Darknezz!               ");
+        buildingString.append(System.getProperty("line.separator"));
+        buildingString.append("-----------------------------------------------");
+        System.out.println(buildingString);
+    }
 }
