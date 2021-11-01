@@ -39,16 +39,19 @@ private int damage;
     }
 
 
-    class shootingWeapon extends Weapon{
+class shootingWeapon extends Weapon{
+    private int arrows;
 
-        public shootingWeapon(String name, int damage) {
+    public shootingWeapon(String name, int damage) {
             super(name, damage);
+            this.arrows = 5;
         }
 
-        public String toString() {
+
+    public String toString() {
             return super.getName();
         }
-    }
+}
 
 
 class meleeWeapon extends Weapon{

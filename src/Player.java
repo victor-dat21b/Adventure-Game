@@ -6,11 +6,12 @@ public class Player {
     private int health;
     private String[] arrOfStr;
     private Weapon playerWeapon = null;
-
+    private int damage;
 
     public Player(Room setCurrentRoom) {
         this.currentRoom = setCurrentRoom;
         this.health = 100;
+        this.damage = 10;
     }
 
 
@@ -25,11 +26,13 @@ public class Player {
 
     public String roomInfo() {
         StringBuilder buildingString = new StringBuilder();
-        buildingString.append(this.currentRoom.getName());
+        buildingString.append(this.currentRoom.getName() + ".");
         buildingString.append(System.getProperty("line.separator"));
         buildingString.append(this.currentRoom.getDescription());
         buildingString.append(System.getProperty("line.separator"));
         buildingString.append(this.currentRoom.getItems());
+        buildingString.append(System.getProperty("line.separator"));
+        buildingString.append(this.currentRoom.getStringEnemy() + ".");
         return buildingString.toString();
     }
 

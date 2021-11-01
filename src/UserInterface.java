@@ -7,8 +7,7 @@ public class UserInterface {
         Scanner in = new Scanner(System.in);
         Adventure myAdventure = new Adventure();
         System.out.println("You were out hiking with some friends, when you suddenly fell down a hole.");
-        System.out.println("You can see that north and west is blocked from big rocks laying on the ground.");
-        System.out.println("South and east seems clear!");
+        System.out.println("You are in " + myAdventure.roomInformation());
         boolean gameFlag = true;
         while (gameFlag) {
             System.out.println("What do you wish to do?");
@@ -30,7 +29,7 @@ public class UserInterface {
                 System.out.println("You exited the game.");
 
             } else if (inputFromTheUser.equals("look")) {
-                System.out.println(myAdventure.roomInformation());
+                System.out.println("You are in " + myAdventure.roomInformation());
 
 
             } else if (inputFromTheUser.equals("help")) {
@@ -113,13 +112,23 @@ public class UserInterface {
                 } else{
                     System.out.println("You have no weapon equipped and therefore nothing to unequip.");
                 }
-            }
+
+
+            } else if (inputFromTheUser.equals("attack")) {
 
 
 
-            else{
+            } else{
                 System.out.println("Error, wrong input, try again.");
             }
     }
     }
+
+
+    public void fightingLoop(){
+
+    }
+
+
+
 }

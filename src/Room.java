@@ -10,7 +10,7 @@ public class Room {
     private String name;
     private String description;
     private ArrayList<Items> itemListRoom = new ArrayList<>();
-    private ArrayList<Enemy> roomEnemies = new ArrayList<>();
+    private Enemy roomEnemy = null;
 
 
     Room(String ne, String desCript) {
@@ -78,6 +78,18 @@ public class Room {
             StringBuilder buildingString = new StringBuilder();
             buildingString.append("This room contains: ");
             buildingString.append(itemListRoom.toString());
+            return buildingString.toString();
+        }
+    }
+
+    public String getStringEnemy() {
+
+        if (this.roomEnemy == null) {
+            return "There are no enemies in this room";
+        } else {
+            StringBuilder buildingString = new StringBuilder();
+            buildingString.append("There is an enemy in this room. It is a/an: ");
+            buildingString.append(roomEnemy.toString());
             return buildingString.toString();
         }
     }
@@ -171,7 +183,11 @@ public class Room {
 
 
     public void addRoomEnemy(Enemy passedEnemy){
-        this.roomEnemies.add(passedEnemy);
+        this.roomEnemy = passedEnemy;
+    }
+
+    public void giveEnemyWeapon(Weapon passedWeapon){
+        this.roomEnemy.giveWeapon(passedWeapon);
     }
 
 

@@ -36,14 +36,14 @@ private Room[] myRooms;
         room5.setItemsListRoom(new Statue("statue"));
         room7.setItemsListRoom(new Food("apple", 25));
         room9.setItemsListRoom(new Food("potato", -30));
-        room1.setItemsListRoom(new shootingWeapon("bow", 15));
-        room1.setItemsListRoom(new meleeWeapon("sword", 20));
+        room1.setItemsListRoom(new shootingWeapon("bow", 20));
+        room1.setItemsListRoom(new meleeWeapon("sword", 15));
 
-        room5.addRoomEnemy(new Enemy());
+        room1.addRoomEnemy(new Enemy("orc", 75, 5));
+        room1.giveEnemyWeapon(new meleeWeapon("sword", 15));
 
 
-
-        myRooms = new Room[]{room1, room2, room3, room4, room5, room6, room7, room8, room9};
+        myRooms = new Room[] {room1, room2, room3, room4, room5, room6, room7, room8, room9};
     }
 
     public Room returnStartRoom(){
