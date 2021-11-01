@@ -34,7 +34,7 @@ public class Adventure {
     }
 
     public boolean inventoryStatus() {
-        return myPlayer.inventoryStorageStatus();
+        return myPlayer.getStorageStatus();
     }
 
     public boolean roomItemsBool() {
@@ -54,7 +54,7 @@ public class Adventure {
     }
 
     public void setPlayerHealth(int updateHealth) {
-        myPlayer.setPlayerHealth(updateHealth);
+        myPlayer.addPlayerHealth(updateHealth);
     }
 
     public boolean lookForFood(String sendText) {
@@ -63,7 +63,7 @@ public class Adventure {
 
     public boolean eatFood(String sendText) {
         Food eatenFood = myPlayer.eatFood(sendText);
-        myPlayer.setPlayerHealth(eatenFood.getHealthPoints());
+        myPlayer.addPlayerHealth(eatenFood.getHealthPoints());
         boolean boolFood = false;
         if (eatenFood.getHealthPoints() > 0) {
             boolFood = true;
@@ -112,7 +112,7 @@ public class Adventure {
 
 
     public int getEnemyHealth(){
-    return myPlayer.getEnemyHealth();
+    return myMap.getEnemyHealth(myPlayer.getCurrentRoom());
     }
 
     public void removeEnemyFromRoom(){
@@ -140,6 +140,14 @@ public class Adventure {
         buildingString.append("Enemy has " + getEnemyHealth() + " left.");
         return buildingString.toString();
     }
+
+    public void playerGetsHit(){
+        int damage = myMap.getEnemyAttackDamage(myPlayer.getCurrentRoom());
+        myPlayer.subtractPlayerHealth(damage);
+    }
+
+
+
     }
 
 

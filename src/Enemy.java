@@ -43,8 +43,16 @@ public class Enemy {
         return this.equippedWeapon;
     }
 
+    public int getEnemyAttackDamage(){
+    if(this.equippedWeapon == null){
+        return this.damage;
+    }else {
+        return this.equippedWeapon.getWeaponDamage();
+    }
+    }
+    }
 
-}
+
 
 
 

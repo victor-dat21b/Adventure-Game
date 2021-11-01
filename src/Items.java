@@ -47,11 +47,9 @@ private int damage;
 
 
 class shootingWeapon extends Weapon{
-    private int arrows;
 
     public shootingWeapon(String name, int damage) {
             super(name, damage);
-            this.arrows = 5;
         }
 
 

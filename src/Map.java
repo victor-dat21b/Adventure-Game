@@ -94,8 +94,13 @@ private Room[] myRooms;
     }
 
 
+    public int getEnemyAttackDamage(Room currentRoom){
+    return currentRoom.getEnemyAttackDamage();
+    }
 
-
+    public int getEnemyHealth(Room currentRoom){
+        return currentRoom.getEnemyHealth();
+    }
 
 
 

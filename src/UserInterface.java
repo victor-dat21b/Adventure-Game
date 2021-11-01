@@ -93,18 +93,22 @@ public class UserInterface {
                 } else {
                     System.out.println(arrOfStr[1] + " is neither in your inventory or in room and therefore cannot be eaten.");
                 }
-
+                if (myAdventure.getPlayerHealth() <= 0){
+                    System.out.println("You died. Game over!");
+                    gameFlag = false;
+                    break;
+                }
 
             } else if (userInput.equals("equip bow") || (userInput.equals("equip sword"))) {
                 if (myAdventure.weaponEquipped()) {
-                    System.out.println("You already have a weapon equipped. Unequip your current weapon to equip a new one. To unequip just write the command: unequip weapon");
+                    System.out.println("You already have a weapon equipped. Unequip your current weapon to equip a new one. To unequip just write the command: unequip");
                 } else if (myAdventure.equipWeapon(userInput)) {
                     System.out.println("Weapon equipped!");
                 } else {
                     System.out.println("Could´nt find weapon in inventory or in the room.");
                 }
 
-            } else if (userInput.equals("unequip weapon")) {
+            } else if (userInput.equals("unequip")) {
                 if (myAdventure.weaponEquipped()) {
                     myAdventure.unequipWeapon();
                     System.out.println("Weapon unequipped and added to inventory!");
@@ -117,6 +121,9 @@ public class UserInterface {
             } else if (userInput.equals("attack")) {
                 if (myAdventure.checkForEnemy()){
                     fightingLoop(in, myAdventure);
+                    if (myAdventure.getPlayerHealth() <= 0){
+                        gameFlag = false;
+                    }
                 } else{
                     System.out.println("There is no enemy in this room.");
                 }
@@ -152,8 +159,15 @@ public class UserInterface {
                     }
                     myAdventure.removeEnemyFromRoom();
                     fightingFlag = false;
+                    break;
                 }
-
+                myAdventure.playerGetsHit();
+                System.out.println("You took damage from an enemy attack!");
+                if (myAdventure.getPlayerHealth() <= 0){
+                    System.out.println("You died. Game over!");
+                    fightingFlag = false;
+                    break;
+                }
 
             }else if(userInput.equals("run")){
                 System.out.println("You ran away from the fight.");

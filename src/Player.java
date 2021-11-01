@@ -25,20 +25,11 @@ public class Player {
     }
 
 
-    //OBS: NEXT TWO METHODS ARE OVERLOADED.
-    public void setPlayerInventory(Items passedItem) {
-        playerInventory.add(passedItem);
-    }
-
-    public void setPlayerInventory(ArrayList<Items> passedItem) {
-        playerInventory = passedItem;
-    }
-
     public ArrayList<Items> getPlayerInventory() {
         return playerInventory;
     }
 
-    public boolean inventoryStorageStatus() {
+    public boolean getStorageStatus() {
         if (this.playerInventory.isEmpty()) {
             return false;
         } else {
@@ -49,6 +40,62 @@ public class Player {
     public String getPlayerInventoryString() {
         return playerInventory.toString();
     }
+
+    public int getPlayerDamage(){
+        if(this.playerWeapon == null){
+            return this.fistDamage;
+        }else{
+            return this.playerWeapon.getWeaponDamage();
+        }
+    }
+
+
+
+
+    //OBS: NEXT TWO METHODS ARE OVERLOADED.
+    public void setPlayerInventory(Items passedItem) {
+        playerInventory.add(passedItem);
+    }
+
+    public void setPlayerInventory(ArrayList<Items> passedItem) {
+        playerInventory = passedItem;
+    }
+
+
+
+    public void unequipWeapon(){
+        this.playerInventory.add(this.playerWeapon);
+        this.playerWeapon = null;
+    }
+
+    public boolean isWeaponEquipped(){
+        if(this.playerWeapon == null){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+    public Weapon getPlayerWeapon(){
+        return this.playerWeapon;
+    }
+
+
+
+
+    public void addPlayerHealth(int updateHealth) {
+        this.health = Math.addExact(this.health, updateHealth);
+    }
+
+    public void subtractPlayerHealth(int updateHealth) {
+        this.health = Math.subtractExact(this.health, updateHealth);
+    }
+
+    public int getPlayerHealth() {
+        return this.health;
+    }
+
+
 
 
 
@@ -96,20 +143,11 @@ public class Player {
             setPlayerInventory(currentList);
         }
         return true;
-
-
     }
 
 
 
 
-    public void setPlayerHealth(int updateHealth) {
-        this.health = Math.addExact(this.health, updateHealth);
-    }
-
-    public int getPlayerHealth() {
-        return this.health;
-    }
 
     public boolean lookForFood(String sendText) {
         boolean boolReturn = false;
@@ -199,10 +237,6 @@ public class Player {
     }
 
 
-    public void unequipWeapon(){
-        this.playerInventory.add(this.playerWeapon);
-        this.playerWeapon = null;
-    }
 
     public boolean lookForForEnemy(){
         if (currentRoom.getRoomEnemy() == null){
@@ -213,17 +247,6 @@ public class Player {
 
     }
 
-    public boolean isWeaponEquipped(){
-        if(this.playerWeapon == null){
-            return false;
-        } else{
-            return true;
-        }
-    }
-
-    public Weapon getPlayerWeapon(){
-        return this.playerWeapon;
-    }
 
     public boolean attackEnemy(){
         boolean myBool = false;
@@ -238,17 +261,7 @@ public class Player {
     }
 
 
-    public int getPlayerDamage(){
-        if(this.playerWeapon == null){
-            return this.fistDamage;
-        }else{
-            return this.playerWeapon.getWeaponDamage();
-        }
-    }
 
-    public int getEnemyHealth(){
-        return currentRoom.getEnemyHealth();
-    }
 
 
 }

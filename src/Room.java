@@ -215,5 +215,8 @@ public class Room {
         return this.roomEnemy.getEnemyWeapon();
     }
 
+    public int getEnemyAttackDamage(){
+    return this.roomEnemy.getEnemyAttackDamage();
+    }
 
 }
