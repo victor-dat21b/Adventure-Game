@@ -36,6 +36,13 @@ private int damage;
         return super.getName();
     }
 
+    public int getWeaponDamage(){
+        return this.damage;
+    }
+
+
+
+
     }
 
 

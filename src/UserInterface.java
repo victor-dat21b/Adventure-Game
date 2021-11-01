@@ -11,12 +11,12 @@ public class UserInterface {
         boolean gameFlag = true;
         while (gameFlag) {
             System.out.println("What do you wish to do?");
-            String inputFromTheUser = in.nextLine();
-            if (inputFromTheUser.equals("east") || (inputFromTheUser.equals("go east")) || (inputFromTheUser.equals("west")
-                    || (inputFromTheUser.equals("go west"))) || (inputFromTheUser.equals("south") || (inputFromTheUser.equals("go south"))
-                    || (inputFromTheUser.equals("north") || (inputFromTheUser.equals("go north"))))) {
-                if (myAdventure.tryToMoveRoom(inputFromTheUser)) {
-                    myAdventure.moveRoom(inputFromTheUser);
+            String userInput = in.nextLine();
+            if (userInput.equals("east") || (userInput.equals("go east")) || (userInput.equals("west")
+                    || (userInput.equals("go west"))) || (userInput.equals("south") || (userInput.equals("go south"))
+                    || (userInput.equals("north") || (userInput.equals("go north"))))) {
+                if (myAdventure.tryToMoveRoom(userInput)) {
+                    myAdventure.moveRoom(userInput);
                     System.out.println("You went to " + myAdventure.roomInformation());
 
                 } else {
@@ -24,15 +24,15 @@ public class UserInterface {
                 }
 
 
-            } else if (inputFromTheUser.equals("exit")) {
+            } else if (userInput.equals("exit")) {
                 gameFlag = false;
                 System.out.println("You exited the game.");
 
-            } else if (inputFromTheUser.equals("look")) {
+            } else if (userInput.equals("look")) {
                 System.out.println("You are in " + myAdventure.roomInformation());
 
 
-            } else if (inputFromTheUser.equals("help")) {
+            } else if (userInput.equals("help")) {
                 System.out.println("Type go east, go north, go west, go south to " +
                         "move around the map.");
                 System.out.println("Type exit to quit the game. Type look to get " +
@@ -41,38 +41,38 @@ public class UserInterface {
                         "Example: take lamp.");
 
 
-            } else if (inputFromTheUser.equals("take lamp") || (inputFromTheUser.equals("take sword")) ||
-                    (inputFromTheUser.equals("take statue")) || (inputFromTheUser.equals("take apple")) ||
-                    (inputFromTheUser.equals("take potato")) || (inputFromTheUser.equals("take bow"))) {
-                String[] arrOfStr = inputFromTheUser.split(" ");
+            } else if (userInput.equals("take lamp") || (userInput.equals("take sword")) ||
+                    (userInput.equals("take statue")) || (userInput.equals("take apple")) ||
+                    (userInput.equals("take potato")) || (userInput.equals("take bow"))) {
+                String[] arrOfStr = userInput.split(" ");
                 if (!myAdventure.roomItemsBool()) {
                     System.out.println("There is nothing to take in the room.");
-                } else if (!myAdventure.tryToTakeItem(inputFromTheUser)) {
+                } else if (!myAdventure.tryToTakeItem(userInput)) {
                     System.out.println("Item could not be taken since its not in the room.");
                 } else {
                     System.out.println(arrOfStr[1] + " taken from room and added to inventory!");
                 }
 
 
-            } else if (inputFromTheUser.equals("drop lamp") || (inputFromTheUser.equals("drop sword")) ||
-                    (inputFromTheUser.equals("drop statue")) || (inputFromTheUser.equals("drop apple")) ||
-                    (inputFromTheUser.equals("drop potato")) || (inputFromTheUser.equals("drop bow"))) {
-                String[] arrOfStr = inputFromTheUser.split(" ");
-                if (!myAdventure.dropItems(inputFromTheUser)) {
+            } else if (userInput.equals("drop lamp") || (userInput.equals("drop sword")) ||
+                    (userInput.equals("drop statue")) || (userInput.equals("drop apple")) ||
+                    (userInput.equals("drop potato")) || (userInput.equals("drop bow"))) {
+                String[] arrOfStr = userInput.split(" ");
+                if (!myAdventure.dropItems(userInput)) {
                     System.out.println(arrOfStr[1] + " is not in inventory and could not be dropped.");
                 } else {
                     System.out.println(arrOfStr[1] + " dropped.");
                 }
 
 
-            } else if (inputFromTheUser.equals("inventory")) {
+            } else if (userInput.equals("inventory")) {
                 if (myAdventure.inventoryStatus()) {
                     System.out.println("In your inventory are: " + myAdventure.getStringInventory());
                 } else {
                     System.out.println("There is nothing in your inventory");
                 }
 
-            } else if (inputFromTheUser.equals("health")) {
+            } else if (userInput.equals("health")) {
                 int health = myAdventure.getPlayerHealth();
                 if (health > 50) {
                     System.out.println("You have " + health + " in health. You seem in good shape to fight.");
@@ -81,10 +81,10 @@ public class UserInterface {
                 }
 
 
-            } else if ((inputFromTheUser.equals("eat apple") || (inputFromTheUser.equals("eat potato")))) {
-                String[] arrOfStr = inputFromTheUser.split(" ");
-                if (myAdventure.lookForFood(inputFromTheUser)) {
-                    boolean myBool = myAdventure.eatFood(inputFromTheUser);
+            } else if ((userInput.equals("eat apple") || (userInput.equals("eat potato")))) {
+                String[] arrOfStr = userInput.split(" ");
+                if (myAdventure.lookForFood(userInput)) {
+                    boolean myBool = myAdventure.eatFood(userInput);
                     if (myBool) {
                         System.out.println("Food eaten! It tasted great and your health increased!");
                     } else if (!myBool) {
@@ -95,16 +95,16 @@ public class UserInterface {
                 }
 
 
-            } else if (inputFromTheUser.equals("equip bow") || (inputFromTheUser.equals("equip sword"))) {
+            } else if (userInput.equals("equip bow") || (userInput.equals("equip sword"))) {
                 if (myAdventure.weaponEquipped()) {
                     System.out.println("You already have a weapon equipped. Unequip your current weapon to equip a new one. To unequip just write the command: unequip weapon");
-                } else if (myAdventure.equipWeapon(inputFromTheUser)) {
+                } else if (myAdventure.equipWeapon(userInput)) {
                     System.out.println("Weapon equipped!");
                 } else {
                     System.out.println("Could´nt find weapon in inventory or in the room.");
                 }
 
-            } else if (inputFromTheUser.equals("unequip weapon")) {
+            } else if (userInput.equals("unequip weapon")) {
                 if (myAdventure.weaponEquipped()) {
                     myAdventure.unequipWeapon();
                     System.out.println("Weapon unequipped and added to inventory!");
@@ -114,8 +114,12 @@ public class UserInterface {
                 }
 
 
-            } else if (inputFromTheUser.equals("attack")) {
-
+            } else if (userInput.equals("attack")) {
+                if (myAdventure.checkForEnemy()){
+                    fightingLoop(in, myAdventure);
+                } else{
+                    System.out.println("There is no enemy in this room.");
+                }
 
 
             } else{
@@ -125,7 +129,41 @@ public class UserInterface {
     }
 
 
-    public void fightingLoop(){
+    public void fightingLoop(Scanner in, Adventure myAdventure){
+        String userInput;
+        boolean fightingFlag = true;
+        System.out.println("You have entered combat with " + myAdventure.getStringEnemy() + ".");
+        while (fightingFlag){
+            System.out.println(myAdventure.getFightStatus());
+            System.out.println("You can either attack or run. What do you wish to do?");
+            userInput = in.nextLine();
+            if(userInput.equals("attack")){
+                if(myAdventure.attackEnemy()){
+                    System.out.println("You attack the enemy with your " + myAdventure.getPlayerWeapon() + ".");
+                    System.out.println("You dealt " + myAdventure.getPlayerDamage() + " damage.");
+                } else{
+                    System.out.println("You attacked the enemy with your fists.");
+                    System.out.println("You dealt " + myAdventure.getPlayerDamage() + " damage.");
+                }
+                if (myAdventure.getEnemyHealth() <= 0){
+                    System.out.println("Enemy died! You won the fight! The enemy dropped its loot in the room.");
+                    if(myAdventure.doesEnemyHaveWeapon()) {
+                        myAdventure.dropEnemyWeapon();
+                    }
+                    myAdventure.removeEnemyFromRoom();
+                    fightingFlag = false;
+                }
+
+
+            }else if(userInput.equals("run")){
+                System.out.println("You ran away from the fight.");
+                fightingFlag = false;
+
+            } else{
+                System.out.println("Error wring input, try again.");
+            }
+        }
+
 
     }
 

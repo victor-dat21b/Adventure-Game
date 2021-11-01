@@ -21,6 +21,29 @@ public class Enemy {
         return this.name;
     }
 
+
+    public boolean isWeaponEquipped(){
+        if(this.equippedWeapon == null){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+    public void lowerHealth(int damage){
+        this.health = Math.subtractExact(this.health, damage);
+    }
+
+
+    public int getEnemyHealth(){
+        return this.health;
+    }
+
+    public Weapon getEnemyWeapon(){
+        return this.equippedWeapon;
+    }
+
+
 }
 
 

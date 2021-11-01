@@ -6,12 +6,12 @@ public class Player {
     private int health;
     private String[] arrOfStr;
     private Weapon playerWeapon = null;
-    private int damage;
+    private int fistDamage;
 
     public Player(Room setCurrentRoom) {
         this.currentRoom = setCurrentRoom;
         this.health = 100;
-        this.damage = 10;
+        this.fistDamage = 5;
     }
 
 
@@ -20,20 +20,8 @@ public class Player {
 
     }
 
-    public boolean roomCheck(String sendText) {
-        return this.currentRoom.roomCheck(sendText);
-    }
-
-    public String roomInfo() {
-        StringBuilder buildingString = new StringBuilder();
-        buildingString.append(this.currentRoom.getName() + ".");
-        buildingString.append(System.getProperty("line.separator"));
-        buildingString.append(this.currentRoom.getDescription());
-        buildingString.append(System.getProperty("line.separator"));
-        buildingString.append(this.currentRoom.getItems());
-        buildingString.append(System.getProperty("line.separator"));
-        buildingString.append(this.currentRoom.getStringEnemy() + ".");
-        return buildingString.toString();
+    public Room getCurrentRoom(){
+        return currentRoom;
     }
 
 
@@ -63,13 +51,7 @@ public class Player {
     }
 
 
-    public boolean roomItemsBool() {
-        if (this.currentRoom.getItemsInRoom().isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+
 
 
     // Taking item from the currentroom object, adds it to playerinventory and updates the new room itemlist.
@@ -119,13 +101,6 @@ public class Player {
     }
 
 
-    public boolean getEquippedStatus(){
-        if(this.playerWeapon == null){
-            return false;
-        } else {
-            return true;
-        }
-    }
 
 
     public void setPlayerHealth(int updateHealth) {
@@ -229,10 +204,54 @@ public class Player {
         this.playerWeapon = null;
     }
 
-
-
+    public boolean lookForForEnemy(){
+        if (currentRoom.getRoomEnemy() == null){
+            return false;
+        } else{
+            return true;
+        }
 
     }
+
+    public boolean isWeaponEquipped(){
+        if(this.playerWeapon == null){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+    public Weapon getPlayerWeapon(){
+        return this.playerWeapon;
+    }
+
+    public boolean attackEnemy(){
+        boolean myBool = false;
+        if(this.playerWeapon == null){
+            currentRoom.attackRoomEnemy(this.fistDamage);
+            myBool = false;
+        } else{
+            currentRoom.attackRoomEnemy(this.playerWeapon.getWeaponDamage());
+            myBool = true;
+        }
+        return myBool;
+    }
+
+
+    public int getPlayerDamage(){
+        if(this.playerWeapon == null){
+            return this.fistDamage;
+        }else{
+            return this.playerWeapon.getWeaponDamage();
+        }
+    }
+
+    public int getEnemyHealth(){
+        return currentRoom.getEnemyHealth();
+    }
+
+
+}
 
 
 

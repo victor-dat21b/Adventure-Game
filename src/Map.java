@@ -39,7 +39,7 @@ private Room[] myRooms;
         room1.setItemsListRoom(new shootingWeapon("bow", 20));
         room1.setItemsListRoom(new meleeWeapon("sword", 15));
 
-        room1.addRoomEnemy(new Enemy("orc", 75, 5));
+        room1.setRoomEnemy(new Enemy("orc", 75, 5));
         room1.giveEnemyWeapon(new meleeWeapon("sword", 15));
 
 
@@ -49,6 +49,53 @@ private Room[] myRooms;
     public Room returnStartRoom(){
         return myRooms[0];
     }
+
+    public String roomInfo(Room currentRoom) {
+        StringBuilder buildingString = new StringBuilder();
+        buildingString.append(currentRoom.getName() + ".");
+        buildingString.append(System.getProperty("line.separator"));
+        buildingString.append(currentRoom.getDescription());
+        buildingString.append(System.getProperty("line.separator"));
+        buildingString.append(currentRoom.getItems());
+        buildingString.append(System.getProperty("line.separator"));
+        buildingString.append(currentRoom.getEnemyInfo() + ".");
+        return buildingString.toString();
+    }
+
+
+    public boolean roomCheck(String sendText, Room currentRoom) {
+        return currentRoom.roomCheck(sendText);
+    }
+
+    public boolean roomItemsBool(Room currentRoom) {
+        if (currentRoom.getItemsInRoom().isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public String getStringEnemy(Room currentRoom){
+        return currentRoom.getStringEnemy();
+    }
+
+
+    public void removeEnemyFromRoom(Room currentRoom){
+        currentRoom.setRoomEnemy(null);
+    }
+
+
+    public boolean doesEnemyHaveWeapon(Room currentRoom){
+        return currentRoom.doesEnemyHaveWeapon();
+    }
+
+    public void dropEnemyWeapon(Room currentRoom){
+        currentRoom.updateItemList(currentRoom.getEnemyWeapon());
+    }
+
+
+
+
 
 
 

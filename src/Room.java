@@ -82,7 +82,7 @@ public class Room {
         }
     }
 
-    public String getStringEnemy() {
+    public String getEnemyInfo() {
 
         if (this.roomEnemy == null) {
             return "There are no enemies in this room";
@@ -92,6 +92,10 @@ public class Room {
             buildingString.append(roomEnemy.toString());
             return buildingString.toString();
         }
+    }
+
+    public String getStringEnemy(){
+        return this.roomEnemy.toString();
     }
 
 
@@ -182,7 +186,7 @@ public class Room {
     }
 
 
-    public void addRoomEnemy(Enemy passedEnemy){
+    public void setRoomEnemy(Enemy passedEnemy){
         this.roomEnemy = passedEnemy;
     }
 
@@ -190,6 +194,26 @@ public class Room {
         this.roomEnemy.giveWeapon(passedWeapon);
     }
 
+    public Enemy getRoomEnemy(){
+        return this.roomEnemy;
+    }
+
+    public void attackRoomEnemy(int damage){
+        this.roomEnemy.lowerHealth(damage);
+    }
+
+
+    public int getEnemyHealth(){
+        return this.roomEnemy.getEnemyHealth();
+    }
+
+    public boolean doesEnemyHaveWeapon(){
+        return this.roomEnemy.isWeaponEquipped();
+    }
+
+    public Weapon getEnemyWeapon(){
+        return this.roomEnemy.getEnemyWeapon();
+    }
 
 
 }
